@@ -1,6 +1,8 @@
-package com.innovation.myownblog.domain;
+package com.innovation.myownblog.dto;
 
 import lombok.Getter;
+
+import java.time.LocalDateTime;
 
 @Getter
 public class PostRequestDto {
@@ -8,4 +10,5 @@ public class PostRequestDto {
     private String author;
     private String content;
     private String password;
+    private LocalDateTime createdAt;
 }

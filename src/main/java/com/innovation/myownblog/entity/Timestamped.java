@@ -1,4 +1,4 @@
-package com.innovation.myownblog.domain;
+package com.innovation.myownblog.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
