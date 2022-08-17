@@ -5,7 +5,8 @@
 
 ## 🧾 과제 요구사항 리스트
 
-![](https://velog.velcdn.com/images/sw_smj/post/24ae0f2c-9d9b-4816-a676-c42fd7d2d591/image.png){: width="50%" height="50%"}
+![](https://velog.velcdn.com/images/sw_smj/post/24ae0f2c-9d9b-4816-a676-c42fd7d2d591/image.png)
+
 
 | 필요 기능 | 기능 설명 |
 | --- | --- |

@@ -12,7 +12,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 
-    <title>너의 MBTI는?</title>
+    <title>나만의 블로그</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
@@ -141,19 +141,6 @@
                     </div>`
         }
 
-
-        function delete_post() {
-            $.ajax({
-                type: "DELETE",
-                url: "/api/free_posts",
-                data: {post_id_give:post_id},
-                success: function (response) {
-                    alert(response["msg"])
-                    window.location.reload()
-                }
-            })
-        }
-
         <!-- 로그아웃 -->
 
 
@@ -169,7 +156,7 @@
     <!-- header == div -->
     <header class="mytitle">
         <h1> </h1>
-        <h1 style="margin-left: 200px;">나만의 블로그</h1>
+        <h1 style="margin: 100px 0 0 200px;">🌱 나만의 블로그</h1>
     </header>
 
     <!-- main == div -->
@@ -188,7 +175,34 @@
                 <div class = "content">
                     게시글 보기
                 </div>
-                <button onclick="location.href='/discussion_post_add'" type="button" class="btn btn-outline-secondary">게시글 쓰기</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">게시글 쓰기</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br><br><br><br>
+                <h3>&nbsp;&nbsp;&nbsp;&nbsp;⏳공사중⌛</h3>
+                <h5><br>&nbsp;&nbsp;&nbsp;&nbsp;사용자 화면은 추후 개발 예정입니다. </h5>
+
                 <br>
                 <div id = "card-box" class="row">
                 </div>
