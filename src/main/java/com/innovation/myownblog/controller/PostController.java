@@ -3,6 +3,7 @@ package com.innovation.myownblog.controller;
 import com.innovation.myownblog.dto.PasswordRequestDto;
 import com.innovation.myownblog.entity.Post;
 import com.innovation.myownblog.dto.PostRequestDto;
+import com.innovation.myownblog.entity.PostDetail;
 import com.innovation.myownblog.entity.PostSum;
 import com.innovation.myownblog.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class PostController {
     }
 
     @GetMapping("/api/posts/{id}")
-    public Post getOnePost(@PathVariable Long id) {
+    public List<PostDetail> getOnePost(@PathVariable Long id) {
         return postService.getOne(id);
     }
 

@@ -1,6 +1,7 @@
 package com.innovation.myownblog.service;
 
 import com.innovation.myownblog.entity.Post;
+import com.innovation.myownblog.entity.PostDetail;
 import com.innovation.myownblog.entity.PostSum;
 import com.innovation.myownblog.repository.PostRepository;
 import com.innovation.myownblog.dto.PostRequestDto;
@@ -30,10 +31,8 @@ public class PostService {
     }
 
     @Transactional
-    public Post getOne(Long id) {
-        return postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
-        );
+    public List<PostDetail> getOne(Long id) {
+        return postRepository.findById(id, PostDetail.class);
     }
 
     @Transactional
