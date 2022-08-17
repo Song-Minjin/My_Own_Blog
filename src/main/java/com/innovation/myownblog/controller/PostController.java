@@ -3,13 +3,10 @@ package com.innovation.myownblog.controller;
 import com.innovation.myownblog.dto.PasswordRequestDto;
 import com.innovation.myownblog.entity.Post;
 import com.innovation.myownblog.dto.PostRequestDto;
-import com.innovation.myownblog.entity.PostDetail;
-import com.innovation.myownblog.entity.PostSum;
+import com.innovation.myownblog.entity.jsonResponse.*;
 import com.innovation.myownblog.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,27 +21,27 @@ public class PostController {
     }
 
     @GetMapping("/api/posts")
-    public List<PostSum> getPosts() {
+    public GetAllResponse getPosts() {
         return postService.get();
     }
 
     @GetMapping("/api/posts/{id}")
-    public List<PostDetail> getOnePost(@PathVariable Long id) {
+    public GetOneResponse getOnePost(@PathVariable Long id) {
         return postService.getOne(id);
     }
 
     @PatchMapping ("/api/posts/{id}")
-    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+    public UpdateResponse updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.update(id, requestDto);
     }
 
     @DeleteMapping("/api/posts/{id}")
-    public Long deletePost(@PathVariable Long id) {     // PathVariable : 경로에 있는 변수
+    public DeleteResponse deletePost(@PathVariable Long id) {     // PathVariable : 경로에 있는 변수
         return postService.delete(id);
     }
 
     @PostMapping("/api/posts/{id}")
-    public boolean checkPassword(@PathVariable Long id, @RequestBody PasswordRequestDto passwordRequestDto){
+    public CheckResponse checkPassword(@PathVariable Long id, @RequestBody PasswordRequestDto passwordRequestDto){
         String password = passwordRequestDto.getPassword();
         return postService.checkpw(id, password);
     }

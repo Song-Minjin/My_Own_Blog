@@ -3,6 +3,7 @@ package com.innovation.myownblog.service;
 import com.innovation.myownblog.entity.Post;
 import com.innovation.myownblog.entity.PostDetail;
 import com.innovation.myownblog.entity.PostSum;
+import com.innovation.myownblog.entity.jsonResponse.*;
 import com.innovation.myownblog.repository.PostRepository;
 import com.innovation.myownblog.dto.PostRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -25,39 +26,41 @@ public class PostService {
     }
 
     @Transactional
-    public List<PostSum> get() {
+    public GetAllResponse get() {
         List<PostSum> postSum = postRepository.findAllByOrderByCreatedAtDesc(PostSum.class);
-        return postSum;
+        return new GetAllResponse(postSum);
     }
 
     @Transactional
-    public List<PostDetail> getOne(Long id) {
-        return postRepository.findById(id, PostDetail.class);
+    public GetOneResponse getOne(Long id) {
+        PostDetail postDetail = postRepository.findById(id, PostDetail.class);
+        return new GetOneResponse(postDetail);
     }
 
     @Transactional
-    public Long update(Long id, PostRequestDto requestDto) {
+    public UpdateResponse update(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         post.update(requestDto);
-        return post.getId();
+        return new UpdateResponse(post.getId());
     }
 
     @Transactional
-    public Long delete(Long id) {
+    public DeleteResponse delete(Long id) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         postRepository.deleteById(id);
-        return post.getId();
+        return new DeleteResponse(post.getId());
     }
 
     @Transactional
-    public boolean checkpw(@PathVariable Long id, String password) {
+    public CheckResponse checkpw(@PathVariable Long id, String password) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        return post.matchPassword(password);
+        boolean password_receive = post.matchPassword(password);
+        return new CheckResponse(password_receive);
     }
 }
