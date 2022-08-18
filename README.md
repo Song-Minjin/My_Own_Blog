@@ -5,7 +5,7 @@
 
 ## 🧾 과제 요구사항 리스트
 
-<a href=""><img src="https://velog.velcdn.com/images/sw_smj/post/24ae0f2c-9d9b-4816-a676-c42fd7d2d591/image.png" align="center" width="450"></a>
+<a href=""><img src="https://velog.velcdn.com/images/sw_smj/post/24ae0f2c-9d9b-4816-a676-c42fd7d2d591/image.png" align="center" width="700"></a>
 
 
 
@@ -23,7 +23,7 @@
 ## 🗄 DB 테이블 설계
 
 
-<a href=""><img src="https://velog.velcdn.com/images/sw_smj/post/4fc901bc-a9a9-41b5-8040-a46a518d2124/image.png" align="center" width="200"></a>
+<a href=""><img src="https://velog.velcdn.com/images/sw_smj/post/4fc901bc-a9a9-41b5-8040-a46a518d2124/image.png" align="center" width="250"></a>
 
 
 ### Table name : Post
