@@ -12,7 +12,7 @@ public class DeleteResponse {
 
     public DeleteResponse(Long id){
         this.success = true;
-        this.message = "정상적으로" + id + "번 글이 삭제되었습니다.";
+        this.message = "정상적으로 " + id + "번 글이 삭제되었습니다.";
         this.error = null;
     }
 }

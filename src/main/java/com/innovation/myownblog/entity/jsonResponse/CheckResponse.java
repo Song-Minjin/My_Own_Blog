@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CheckResponse {
     private boolean success;
+    private boolean data;
     private String message;
     private String error;
 
     public CheckResponse(boolean password_receive){
         this.success = true;
+        this.data = password_receive;
         this.message = makeMessage(password_receive);
         this.error = null;
     }

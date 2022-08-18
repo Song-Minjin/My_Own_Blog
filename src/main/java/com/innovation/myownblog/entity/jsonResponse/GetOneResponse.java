@@ -16,4 +16,5 @@ public class GetOneResponse {
         this.data = postDetail;
         this.error = null;
     }
+
 }

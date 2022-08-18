@@ -20,9 +20,10 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public Post create(PostRequestDto requestDto) {
+    public CreateResponse create(PostRequestDto requestDto) {
         Post post = new Post(requestDto);
-        return postRepository.save(post);
+        postRepository.save(post);
+        return new CreateResponse(post.getId());
     }
 
     @Transactional
