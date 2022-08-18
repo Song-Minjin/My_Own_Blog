@@ -23,7 +23,7 @@
 ## 🗄 DB 테이블 설계
 
 
-<a href=""><img src="https://user-images.githubusercontent.com/100582309/184881172-63747f68-fb1f-49c4-9e12-4c5e71894979.png" align="center" width="200"></a>
+<a href=""><img src="https://velog.velcdn.com/images/sw_smj/post/4fc901bc-a9a9-41b5-8040-a46a518d2124/image.png" align="center" width="200"></a>
 
 
 ### Table name : Post
@@ -42,14 +42,14 @@
 > 각 Function 이름을 누르면 자세한 HTTP Request, Response를 확인할 수 있습니다.
 
 
-| Function         | Method   | URL             |
-|------------------|----------|------------------|
-| [전체 게시글 목록 조회]() | `GET`    | `api/posts`      |
-| [게시글 작성]()       | `POST`   | `api/posts`      |
-| [한 게시글 조회]()     | `GET`    | `api/posts/{id}` |
-| [게시글 비밀번호]()     | `POST`   | `api/posts/{id}` |
-| [게시글 수정]()       | `PATCH`  | `api/posts/{id}` |
-| [게시글 삭제]()       | `DELETE` | `api/posts/{id}` |
+| Function                                                                                                              | Method   | URL             |
+|-----------------------------------------------------------------------------------------------------------------------|----------|------------------|
+| [전체 게시글 목록 조회](https://github.com/Song-Minjin/My_Own_Blog/blob/master/src/main/resources/API-doc/get-api-posts.md)    | `GET`    | `api/posts`      |
+| [게시글 작성](https://github.com/Song-Minjin/My_Own_Blog/blob/master/src/main/resources/API-doc/post-api-posts.md)         | `POST`   | `api/posts`      |
+| [한 게시글 조회](https://github.com/Song-Minjin/My_Own_Blog/blob/master/src/main/resources/API-doc/get-api-posts-id.md)     | `GET`    | `api/posts/{id}` |
+| [게시글 비밀번호 확인](https://github.com/Song-Minjin/My_Own_Blog/blob/master/src/main/resources/API-doc/post-api-posts-id.md) | `POST`   | `api/posts/{id}` |
+| [게시글 수정](https://github.com/Song-Minjin/My_Own_Blog/blob/master/src/main/resources/API-doc/patch-api-posts-id.md)                                                                                                            | `PATCH`  | `api/posts/{id}` |
+| [게시글 삭제](https://github.com/Song-Minjin/My_Own_Blog/blob/master/src/main/resources/API-doc/delete-api-posts-id.md)                                                                                                            | `DELETE` | `api/posts/{id}` |
 
 
 <br><br>
