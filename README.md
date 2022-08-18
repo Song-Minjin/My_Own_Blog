@@ -55,11 +55,12 @@
 <br><br>
 
 # 🌱 Think About
-## 1. 수정, 삭제 API의 request를 어떤 방식으로 사용하셨나요? (param, query, body)
-
 <br>
 
-## 수정 API : `PATCH`
+## 1. 수정, 삭제 API의 request를 어떤 방식으로 사용하셨나요? (param, query, body)
+<br>
+
+- 수정 API : `PATCH`
 
 ## 1. Request
 
@@ -132,7 +133,7 @@
 | Message | `String` | 사용자에게 보여줄 메시지 |  O |
 | error | `String` | 에러에 관한 내용 반환 | X |
 
-<br>
+<br><br>
 
 ## 2. 어떤 상황에 어떤 방식의 request를 써야하나요?
   
@@ -142,7 +143,7 @@
 
 그리고 나머지 Path Parameter와 Query String은 상황에 따라 선택하여 통신할 수 있다. 두 가지 다 데이터 중심으로 요청, 반환이 이루어진다.
 
-### 1. Path parameter 이용하기
+## 1. Path parameter 이용하기
 
 > Path Parameter = Path Variable (거의 혼용하여 사용)
    
@@ -168,7 +169,7 @@
 
 <br>
 
-### 2. Query string 이용하기
+## 2. Query string 이용하기
 
 > URL의 끝에 ?와 함께 key-value값을 가지는 요청 파라미터
 
@@ -251,7 +252,7 @@
   }
   ```
 
-<br><br>
+<br><br><br>
 
 ## 4. 적절한 관심사 분리를 적용하였나요? (Controller, Repository, Service)
 
@@ -261,13 +262,13 @@
 
 또, JSON 파일로 출력을 할 때에도 Service 등에서 복잡하게 작업하지 않고, Response될 객체들을 따로 생성하여 작업하였다. 이는 계산 처리가 되는 부분(Service)과 입력(변수 선언, 아마 Entity 부분)이 잘 분리되었다고 볼 수 있겠다.
 
-<br><br>
+<br><br><br>
 
 ## 5. 작성한 코드에서 빈(Bean)을 모두 찾아보세요!
 
 추후 추가하겠습니다.
 
-<br><br>
+<br><br><br>
 
 ## 6. API 명세서 작성 가이드라인을 검색하여 직접 작성한 명세서와 비교해보세요!
 
