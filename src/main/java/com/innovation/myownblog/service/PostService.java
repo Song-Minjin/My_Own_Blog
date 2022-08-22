@@ -1,11 +1,11 @@
 package com.innovation.myownblog.service;
 
+import com.innovation.myownblog.dto.PostRequestDto;
 import com.innovation.myownblog.entity.Post;
 import com.innovation.myownblog.entity.PostDetail;
 import com.innovation.myownblog.entity.PostSum;
 import com.innovation.myownblog.entity.jsonResponse.*;
 import com.innovation.myownblog.repository.PostRepository;
-import com.innovation.myownblog.dto.PostRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;

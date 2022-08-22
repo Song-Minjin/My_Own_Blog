@@ -1,7 +1,6 @@
 package com.innovation.myownblog.controller;
 
 import com.innovation.myownblog.dto.PasswordRequestDto;
-import com.innovation.myownblog.entity.Post;
 import com.innovation.myownblog.dto.PostRequestDto;
 import com.innovation.myownblog.entity.jsonResponse.*;
 import com.innovation.myownblog.service.PostService;

@@ -1,6 +1,5 @@
 package com.innovation.myownblog.entity.jsonResponse;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.innovation.myownblog.entity.PostSum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
