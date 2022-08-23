@@ -5,18 +5,21 @@ import com.innovation.myownblog.model.User;
 import com.innovation.myownblog.model.UserRoleEnum;
 import com.innovation.myownblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class UserService {
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void registerUser(SignupRequestDto requestDto) {
@@ -34,6 +37,9 @@ public class UserService {
         if (!password.equals(passwordCheck)) {
             throw new IllegalArgumentException("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
         }
+
+        //패스워드 암호화
+        password = passwordEncoder.encode(password);
 
         // 닉네임 중복 확인
         String nickname = requestDto.getNickname();
