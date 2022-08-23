@@ -1,10 +1,11 @@
-package com.innovation.myownblog.entity;
+package com.innovation.myownblog.model;
 
 import java.time.LocalDateTime;
 
-public interface PostSum {
+public interface PostDetail {
     Long getId();
     String getTitle();
     String getAuthor();
+    String getContent();
     LocalDateTime getCreatedAt();
 }

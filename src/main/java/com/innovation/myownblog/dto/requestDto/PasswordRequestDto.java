@@ -1,4 +1,4 @@
-package com.innovation.myownblog.dto;
+package com.innovation.myownblog.dto.requestDto;
 
 import lombok.Getter;
 import lombok.Setter;

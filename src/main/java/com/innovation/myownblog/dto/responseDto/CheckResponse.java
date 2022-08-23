@@ -1,4 +1,4 @@
-package com.innovation.myownblog.entity.jsonResponse;
+package com.innovation.myownblog.dto.responseDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
