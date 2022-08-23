@@ -1,7 +1,7 @@
-package com.innovation.myownblog.entity;
+package com.innovation.myownblog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.innovation.myownblog.dto.PostRequestDto;
+import com.innovation.myownblog.dto.requestDto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

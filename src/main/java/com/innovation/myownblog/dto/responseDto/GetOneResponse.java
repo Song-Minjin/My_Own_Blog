@@ -1,6 +1,6 @@
-package com.innovation.myownblog.entity.jsonResponse;
+package com.innovation.myownblog.dto.responseDto;
 
-import com.innovation.myownblog.entity.PostDetail;
+import com.innovation.myownblog.model.PostDetail;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

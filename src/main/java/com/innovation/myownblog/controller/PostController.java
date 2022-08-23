@@ -1,8 +1,8 @@
 package com.innovation.myownblog.controller;
 
-import com.innovation.myownblog.dto.PasswordRequestDto;
-import com.innovation.myownblog.dto.PostRequestDto;
-import com.innovation.myownblog.entity.jsonResponse.*;
+import com.innovation.myownblog.dto.requestDto.PasswordRequestDto;
+import com.innovation.myownblog.dto.requestDto.PostRequestDto;
+import com.innovation.myownblog.dto.responseDto.*;
 import com.innovation.myownblog.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +42,7 @@ public class PostController {
     @PostMapping("/api/posts/{id}")
     public CheckResponse checkPassword(@PathVariable Long id, @RequestBody PasswordRequestDto passwordRequestDto){
         String password = passwordRequestDto.getPassword();
-        return postService.checkpw(id, password);
+        return postService.checkPassword(id, password);
     }
 
 

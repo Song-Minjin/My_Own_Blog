@@ -1,8 +1,8 @@
 package com.innovation.myownblog.repository;
 
-import com.innovation.myownblog.entity.Post;
-import com.innovation.myownblog.entity.PostDetail;
-import com.innovation.myownblog.entity.PostSum;
+import com.innovation.myownblog.model.Post;
+import com.innovation.myownblog.model.PostDetail;
+import com.innovation.myownblog.model.PostSum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
