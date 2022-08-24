@@ -156,7 +156,7 @@
     <!-- header == div -->
     <header class="mytitle">
         <div class="head_contents" id="header-title-login-user">
-            <h5> <span th:text="${nickname}"></span> 님&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+            <h5> <span th:text="${}"></span> 님&nbsp;&nbsp;&nbsp;&nbsp;</h5>
             <form id="my_form" method="post" action="/user/logout">
                 <button type="button" class="btn btn-outline-dark" id="logout-text" href="javascript:{}" onclick="document.getElementById('my_form').submit();">로그아웃</button>
             </form>        </div>

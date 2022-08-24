@@ -1,38 +1,51 @@
 package com.innovation.myownblog.controller;
 
-import com.innovation.myownblog.dto.requestDto.SignupRequestDto;
+import com.innovation.myownblog.dto.UserDto;
 import com.innovation.myownblog.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
+
+@RestController
+@RequestMapping("/api")
 public class UserController {
-
     private final UserService userService;
 
-    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    // 회원 로그인 페이지
-    @GetMapping("/user/login")
-    public String login() {
-        return "login";
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("hello");
     }
 
-    // 회원 가입 페이지
-    @GetMapping("/user/signup")
-    public String signup() {
-        return "signup";
+    @PostMapping("/test-redirect")
+    public void testRedirect(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/api/user");
     }
 
-    // 회원 가입 요청 처리
-    @PostMapping("/user/signup")
-    public String registerUser(SignupRequestDto requestDto) {
-        userService.registerUser(requestDto);
-        return "redirect:/user/login";
+    @PostMapping("/signup")
+    public ResponseEntity<UserDto> signup(
+            @Valid @RequestBody UserDto userDto     // UserDto를 파라미터로 받아
+    ) {
+        return ResponseEntity.ok(userService.signup(userDto));      // UserService의 signup 메소드를 호출
+    }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")         // @PreAuthorize을 통해 => USER, ADMIN 두 가지 권한 모두 호출할 수 있는 API가 됨
+    public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
+        return ResponseEntity.ok(userService.getMyUserWithAuthorities());
+    }
+
+    @GetMapping("/user/{username}")
+    @PreAuthorize("hasAnyRole('ADMIN')")         // @PreAuthorize으로 USER 권한만 호출
+    public ResponseEntity<UserDto> getUserInfo(@PathVariable String username) {             // UserService에서 만들었던 username 파라미터를 기준으로,
+        return ResponseEntity.ok(userService.getUserWithAuthorities(username));             // 유저 정보와 권한 정보를 리턴하는 API
     }
 }
