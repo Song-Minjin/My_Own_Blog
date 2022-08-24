@@ -5,6 +5,7 @@ import com.innovation.myownblog.dto.responseDto.*;
 import com.innovation.myownblog.model.Post;
 import com.innovation.myownblog.model.PostDetail;
 import com.innovation.myownblog.model.PostSum;
+import com.innovation.myownblog.model.User;
 import com.innovation.myownblog.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public CreateResponse create(PostRequestDto requestDto) {
-        Post post = new Post(requestDto);
+    public CreateResponse create(PostRequestDto requestDto, long userId, String userNickname) {
+        Post post = new Post(requestDto, userId, userNickname);
         postRepository.save(post);
         return new CreateResponse(post.getId());
     }

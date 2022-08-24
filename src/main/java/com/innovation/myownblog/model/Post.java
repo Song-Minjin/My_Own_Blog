@@ -4,15 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.innovation.myownblog.dto.requestDto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
-@NoArgsConstructor // 기본생성자를 만듭니다.
+@NoArgsConstructor // 기본생성자 생성
+@Setter
 @Getter
-@Entity // 테이블과 연계됨을 스프링에게 알려줍니다.
+@Entity // 테이블과 연계됨
 @EntityListeners(AuditingEntityListener.class)
-public class Post extends Timestamped { // 생성,수정 시간을 자동으로 만들어줍니다.
+public class Post extends Timestamped { // 생성,수정 시간을 자동 생성
+
+    // ID 자동 생성 및 증가
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
@@ -21,7 +25,7 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     private String title;
 
     @Column(nullable = false)
-    private String author;
+    private String userNickname;
 
     @Column(nullable = false)
     private String content;
@@ -30,23 +34,29 @@ public class Post extends Timestamped { // 생성,수정 시간을 자동으로 
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private Long userId;
+
     public Post(String title, String username, String contents, String password) {
+        this.userId = userId;
         this.title = title;
-        this.author = username;
+        this.userNickname = userNickname;
         this.content = contents;
         this.password = password;
     }
 
-    public Post(PostRequestDto requestDto) {
+    public Post(PostRequestDto requestDto, long userId, String userNickname) {
+        this.userId = this.userId;
         this.title = requestDto.getTitle();
-        this.author = requestDto.getAuthor();
+        this.userNickname = this.userNickname;
         this.content = requestDto.getContent();
         this.password = requestDto.getPassword();
     }
 
     public void update(PostRequestDto requestDto) {
+        this.userId = userId;
         this.title = requestDto.getTitle();
-        this.author = requestDto.getAuthor();
+        this.userNickname = userNickname;
         this.content = requestDto.getContent();
     }
 
