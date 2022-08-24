@@ -1,38 +1,28 @@
 package com.innovation.myownblog.controller;
 
-import com.innovation.myownblog.dto.requestDto.SignupRequestDto;
+import com.innovation.myownblog.dto.UserResponseDto;
 import com.innovation.myownblog.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/userinfo")
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @GetMapping("/me")
+    public ResponseEntity<UserResponseDto> getMyUserInfo() {
+        return ResponseEntity.ok(userService.getMyInfo());
     }
 
-    // 회원 로그인 페이지
-    @GetMapping("/user/login")
-    public String login() {
-        return "login";
-    }
-
-    // 회원 가입 페이지
-    @GetMapping("/user/signup")
-    public String signup() {
-        return "signup";
-    }
-
-    // 회원 가입 요청 처리
-    @PostMapping("/user/signup")
-    public String registerUser(SignupRequestDto requestDto) {
-        userService.registerUser(requestDto);
-        return "redirect:/user/login";
+    @GetMapping("/{username}")
+    public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getUserInfo(username));
     }
 }
