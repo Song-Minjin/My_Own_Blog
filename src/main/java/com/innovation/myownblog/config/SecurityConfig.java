@@ -5,6 +5,7 @@ import com.innovation.myownblog.jwt.JwtAuthenticationEntryPoint;
 import com.innovation.myownblog.jwt.JwtSecurityConfig;
 import com.innovation.myownblog.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -73,9 +74,12 @@ public class SecurityConfig {
 
                 .and()
                 .authorizeRequests()                                           // Http Request에 대한 접근 제한 설정
-                .antMatchers("/api/hello").permitAll()              // 지정 요청에 대해서는 인증 없이 모든 접근 허용
-                .antMatchers("/api/authenticate").permitAll()       // 토큰을 받기 위한 API와,
-                .antMatchers("/api/signup").permitAll()             // 회원가입을 위한 API는 토큰이 없는 상태에서 요청됨 -> 모두 열어주기
+//                .antMatchers("/api/hello").permitAll()              // 지정 요청에 대해서는 인증 없이 모든 접근 허용
+                .antMatchers("/auth/login").permitAll()             // 토큰을 받기 위한 로그인 API와,
+                .antMatchers("/user/signup").permitAll()             // 회원가입을 위한 API는 토큰이 없는 상태에서 요청됨 -> 모두 열어주기
+
+                .antMatchers(HttpMethod.GET, "/api/posts").permitAll()               // 전체 게시글 조회
+                .antMatchers(HttpMethod.GET, "/api/posts/{id}").permitAll()          // 한 게시글 조회 / 비밀번호 확인
 
                 .anyRequest().authenticated()                           // 나머지 요청에 대해서는 인증 필요
 

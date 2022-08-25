@@ -28,8 +28,6 @@ public class User {
     @Column(name = "nickname", length = 50)
     private String nickname;
 
-    @Column(name = "activated")
-    private boolean activated;
 
     @ManyToMany     // 유저 객체와 권한 객체의
     @JoinTable(     // 다대다 테이블 관계를 다대일 + 일대다 관계의 조인테이블로 정의했다는 뜻

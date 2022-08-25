@@ -1,5 +1,6 @@
 package com.innovation.myownblog.jwt;
 
+import com.innovation.myownblog.dto.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -26,14 +27,16 @@ public class TokenProvider implements InitializingBean {
     private final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
     private static final String AUTHORITIES_KEY = "auth";
     private final String secret;
-    private final long tokenValidityInMilliseconds;
+    private final long ACCESS_TOKEN_EXPIRE_TIME;
+    private final long REFRESH_TOKEN_EXPIRE_TIME;
     private Key key;
 
     public TokenProvider(
             @Value("${jwt.secret}") String secret,
             @Value("${jwt.token-validity-in-seconds}") long tokenValidityInSeconds) {
         this.secret = secret;
-        this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
+        this.ACCESS_TOKEN_EXPIRE_TIME = tokenValidityInSeconds * 1000;
+        this.REFRESH_TOKEN_EXPIRE_TIME = tokenValidityInSeconds * 1000 * 24 * 7;
     }
 
     @Override
@@ -42,20 +45,39 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String createToken(Authentication authentication) {      // Authentication 객체의 권한 정보를 이용해서 토큰을 생성하는 createToken 메소드 추가
+    public TokenDto createToken(Authentication authentication) {      // Authentication 객체의 권한 정보를 이용해서 토큰을 생성하는 createToken 메소드 추가
+
+        // 객체의 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
-        Date validity = new Date(now + this.tokenValidityInMilliseconds);       // 우리가 yml(properties)에서 설정해둔 만료시간 역시 설정해둔다.
 
-        return Jwts.builder()                           // JWT 토큰을 생성하여 리턴
+        // AccessToken 생성
+        Date accessTokenExpiresIn = new Date(now + this.ACCESS_TOKEN_EXPIRE_TIME);
+        String accessToken =  Jwts.builder()                           // accessToken 생성
                 .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
                 .signWith(key, SignatureAlgorithm.HS512)
-                .setExpiration(validity)
+                .setExpiration(accessTokenExpiresIn)
                 .compact();
+
+        // RefreshToken 생성
+        Date refreshTokenExpiresIn = new Date(now + this.REFRESH_TOKEN_EXPIRE_TIME);
+        String refreshToken =  Jwts.builder()                           // refreshToken 생성
+                .setSubject(authentication.getName())
+                .claim(AUTHORITIES_KEY, authorities)
+                .signWith(key, SignatureAlgorithm.HS512)
+                .setExpiration(refreshTokenExpiresIn)
+                .compact();
+
+
+        return TokenDto.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
+                .build();
     }
 
     public Authentication getAuthentication(String token) {         // 반대로 토큰을 역으로 받아서 토큰에 담겨있는 권한 정보를 이용하여 Authentication 객체를 리턴하는 getAuthenticatioin() 메소드 생성
